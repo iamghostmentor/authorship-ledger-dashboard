@@ -45,6 +45,10 @@ st.markdown(
 .block-container {{ padding-top: 2.4rem; padding-bottom: 3rem; max-width: 1240px; }}
 #MainMenu, footer {{ visibility: hidden; }}
 [data-testid="stSlider"] label p {{ font-size: .86rem; font-weight: 500; }}
+.al-cq {{ container-type: inline-size; }}
+.al-grid {{ display: grid; gap: 1rem; grid-template-columns: repeat(4, minmax(0, 1fr)); }}
+@container (max-width: 820px) {{ .al-grid {{ grid-template-columns: repeat(2, minmax(0, 1fr)); }} }}
+@container (max-width: 380px) {{ .al-grid {{ grid-template-columns: minmax(0, 1fr); }} }}
 .al-kicker {{ font-size: .78rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: rgba(30,39,97,.6); }}
 .al-title {{ font-size: 2.1rem; font-weight: 800; letter-spacing: -.02em; line-height: 1.15; margin: .15rem 0 .35rem; color: {NAVY}; }}
 .al-sub {{ font-size: 1.02rem; color: rgba(30,39,97,.78); max-width: 62rem; margin-bottom: 1.6rem; line-height: 1.55; }}
@@ -74,7 +78,7 @@ st.markdown(
 .al-card b.h {{ display: block; font-size: 1rem; margin-bottom: .25rem; }}
 .al-brand {{ font-size: 1.35rem; font-weight: 800; letter-spacing: -.02em; color: {NAVY}; }}
 .al-tag {{ font-size: .82rem; color: rgba(30,39,97,.7); margin: .1rem 0 1.2rem; line-height: 1.4; }}
-.al-score {{ width: 100%; border-collapse: collapse; font-size: .92rem; color: {NAVY}; }}
+.al-score {{ width: 100%; max-width: 560px; border-collapse: collapse; font-size: .92rem; color: {NAVY}; }}
 .al-score th {{ text-align: left; font-size: .72rem; letter-spacing: .05em; text-transform: uppercase; color: rgba(30,39,97,.65); padding: 6px 8px; border-bottom: 2px solid {NAVY}; }}
 .al-score td {{ padding: 9px 8px; border-bottom: 1px solid {ICE}; }}
 .al-score td.n {{ text-align: center; }}
@@ -102,6 +106,17 @@ def page_header(kicker: str, title: str, sub: str) -> None:
     html(
         f'<div class="al-kicker">{kicker}</div><div class="al-title">{title}</div>'
         f'<div class="al-sub">{sub}</div>'
+    )
+
+
+def grid(items: list[str]) -> None:
+    html('<div class="al-cq"><div class="al-grid">' + "".join(items) + "</div></div>")
+
+
+def kpi(tone: str, label: str, value: str, sub: str) -> str:
+    return (
+        f'<div class="al-kpi {tone}"><div class="lbl">{label}</div>'
+        f'<div class="val">{value}</div><div class="sub">{sub}</div></div>'
     )
 
 
@@ -192,19 +207,13 @@ def section_overview() -> None:
     )
     m = current_model()
     be = m.break_even
-    cols = st.columns(4, gap="medium")
     cards = [
         ("red", "Status Quo Cost", money(m.sq_cost), "/ year, indefinitely"),
         ("navy", "Ledger Cost (Yr 2+)", money(m.y2), "/ year, after Year 1"),
         ("green" if m.savings > 0 else "red", "Annual Savings", money(m.savings), "starting Year 2"),
         ("navy", "Break-even Point", f"Year {be}" if be else "Not reached", "of adoption" if be else "at these assumptions"),
     ]
-    for col, (tone, label, value, sub) in zip(cols, cards):
-        with col:
-            html(
-                f'<div class="al-kpi {tone}"><div class="lbl">{label}</div>'
-                f'<div class="val">{value}</div><div class="sub">{sub}</div></div>'
-            )
+    grid([kpi(*card) for card in cards])
 
     is_default = all(st.session_state[k] == v for k, v in DEFAULTS.items())
     html(
@@ -344,19 +353,11 @@ def ev_model() -> None:
     be = m.break_even
 
     html('<div class="al-h3">Live results</div>')
-    row1 = st.columns(4, gap="medium")
-    row1_items = [
+    tiles = [
         ("Expected false accusations / year", f"{m.false_acc:,.1f}", "submissions × false-positive rate", ""),
         ("Status quo annual cost", money(m.sq_cost), "false accusations × cost per accusation", "alert"),
         ("Residual disputes / year", f"{m.resid:,.2f}", "false accusations × (1 − avoidance rate)", ""),
         ("Residual dispute cost / year", money(m.resid_cost), "residual disputes × cost per accusation", ""),
-    ]
-    for col, (label, value, fx, tone) in zip(row1, row1_items):
-        with col:
-            html(stat(label, value, fx, tone))
-    st.markdown("")
-    row2 = st.columns(4, gap="medium")
-    row2_items = [
         ("Year 1 ledger cost", money(m.y1), "build + maintenance + residual dispute cost", ""),
         ("Year 2+ ledger cost", money(m.y2), "maintenance + residual dispute cost", ""),
         (
@@ -372,9 +373,7 @@ def ev_model() -> None:
             "",
         ),
     ]
-    for col, (label, value, fx, tone) in zip(row2, row2_items):
-        with col:
-            html(stat(label, value, fx, tone))
+    grid([stat(*tile) for tile in tiles])
 
     html('<div class="al-h3">Expected annual cost, Year 1 to Year 4</div>')
     show_chart(ev_chart(m), key="ev_chart")
@@ -454,9 +453,9 @@ def radar_chart() -> go.Figure:
             ),
             angularaxis=dict(gridcolor="rgba(202,220,252,.9)", linecolor=ICE, tickfont=dict(size=13, color=NAVY)),
         ),
-        legend=dict(orientation="h", yanchor="top", y=-0.04, xanchor="center", x=0.5, font=dict(size=12)),
+        legend=dict(orientation="h", yanchor="top", y=-0.17, xanchor="center", x=0.5, font=dict(size=12)),
     )
-    return style_fig(fig, 490, margin=dict(l=95, r=95, t=30, b=70))
+    return style_fig(fig, 570, margin=dict(l=95, r=95, t=60, b=100))
 
 
 def section_build_buy() -> None:
@@ -466,24 +465,21 @@ def section_build_buy() -> None:
         "Two ways to deliver the product, scored 1 to 5 on four considerations. "
         "Higher favors that option. Hover any vertex for the score and the reason behind it.",
     )
-    left, right = st.columns([5, 3], gap="large")
-    with left:
-        show_chart(radar_chart(), key="radar")
-    with right:
-        rows = ""
-        for crit, bs, ys in zip(CRITERIA, BUILD_SCORES, BUY_SCORES):
-            crit_html = crit.replace("&", "&amp;")
-            rows += (
-                f"<tr><td>{crit_html}</td>"
-                f'<td class="n {"w" if bs > ys else ""}">{bs}</td>'
-                f'<td class="n {"w" if ys > bs else ""}">{ys}</td></tr>'
-            )
-        html(
-            '<div class="al-h3" style="margin-top:.6rem">Scorecard</div>'
-            '<table class="al-score"><tr><th>Consideration</th><th>Build</th><th>Buy</th></tr>'
-            f"{rows}</table>"
-            '<div class="al-note" style="margin-top:.6rem">Bold marks the higher-scoring option on each row.</div>'
+    show_chart(radar_chart(), key="radar")
+    rows = ""
+    for crit, bs, ys in zip(CRITERIA, BUILD_SCORES, BUY_SCORES):
+        crit_html = crit.replace("&", "&amp;")
+        rows += (
+            f"<tr><td>{crit_html}</td>"
+            f'<td class="n {"w" if bs > ys else ""}">{bs}</td>'
+            f'<td class="n {"w" if ys > bs else ""}">{ys}</td></tr>'
         )
+    html(
+        '<div class="al-h3" style="margin-top:.4rem">Scorecard</div>'
+        '<table class="al-score"><tr><th>Consideration</th><th>Build</th><th>Buy</th></tr>'
+        f"{rows}</table>"
+        '<div class="al-note" style="margin-top:.6rem">Bold marks the higher-scoring option on each row.</div>'
+    )
     st.markdown("")
     html(
         '<div class="al-callout"><b>Build the provenance engine internally, buy the trusted '
@@ -518,9 +514,8 @@ def rate_chart(rates: pd.DataFrame) -> go.Figure:
 @st.fragment
 def dataset_table(df: pd.DataFrame) -> None:
     depts = sorted(df["Department"].unique())
-    c1, c2, c3 = st.columns([5, 4, 3], gap="medium")
-    with c1:
-        chosen = st.multiselect("Department", depts, default=depts, key="f_dept")
+    chosen = st.multiselect("Department", depts, default=depts, key="f_dept")
+    c2, c3 = st.columns([3, 2], gap="medium")
     with c2:
         status = st.segmented_control(
             "Flagged by detector", ["All", "Flagged", "Not flagged"], default="All", key="f_flag"
