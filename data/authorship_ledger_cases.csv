@@ -1,0 +1,56 @@
+Submission ID,Department,Voice Sessions,Dictation Minutes,Transcripts,Research Sources,Major Drafts,Revision Events,AI Transforms,Artifacts Hashed,Ledger Verified,Flagged by Detector,Resolved via Ledger,Case Outcome
+AL-1001,Engineering,22,132,1,25,6,23,7,71,Yes,No,N/A,No review needed
+AL-1002,Computer Science,19,114,19,15,2,9,2,58,Yes,No,N/A,No review needed
+AL-1003,Business Analytics,2,26,1,24,8,22,14,82,Yes,No,N/A,No review needed
+AL-1004,Business Analytics,7,77,3,10,4,21,10,56,Yes,No,N/A,No review needed
+AL-1005,Psychology,13,130,10,10,2,54,14,98,Yes,Yes,"Yes, same day",Cleared via Authorship Receipt
+AL-1006,Engineering,11,154,6,20,5,53,2,92,Yes,No,N/A,No review needed
+AL-1007,Engineering,11,66,4,29,3,32,8,95,Yes,No,N/A,No review needed
+AL-1008,Biology,7,70,3,8,6,52,2,81,Yes,No,N/A,No review needed
+AL-1009,Computer Science,7,84,4,10,5,51,10,86,Yes,No,N/A,No review needed
+AL-1010,Engineering,12,132,5,4,5,44,10,79,Yes,No,N/A,No review needed
+AL-1011,Engineering,22,264,5,10,4,23,17,72,Yes,No,N/A,No review needed
+AL-1012,Business Analytics,20,220,12,9,4,40,15,87,Yes,No,N/A,No review needed
+AL-1013,Biology,6,42,6,15,3,32,12,87,Yes,No,N/A,No review needed
+AL-1014,English,19,95,4,23,6,57,10,108,Yes,No,N/A,No review needed
+AL-1015,Engineering,16,80,9,18,4,40,3,88,Yes,No,N/A,No review needed
+AL-1016,Biology,8,56,6,26,4,42,16,99,Yes,No,N/A,No review needed
+AL-1017,Biology,2,12,2,30,6,23,1,74,Yes,No,N/A,No review needed
+AL-1018,English,4,48,1,26,4,16,15,72,Yes,No,N/A,No review needed
+AL-1019,Engineering,21,231,7,19,5,53,9,110,Yes,No,N/A,No review needed
+AL-1020,Business Analytics,16,208,15,5,5,22,2,64,Yes,No,N/A,No review needed
+AL-1021,Business Analytics,9,126,4,2,3,53,1,75,Yes,No,N/A,No review needed
+AL-1022,Biology,12,72,9,9,6,50,15,100,Yes,No,N/A,No review needed
+AL-1023,Business Analytics,20,280,16,9,9,59,13,117,Yes,No,N/A,No review needed
+AL-1024,Business Analytics,15,150,7,15,9,54,1,94,Yes,No,N/A,No review needed
+AL-1025,Psychology,12,72,4,8,5,42,14,82,Yes,No,N/A,No review needed
+AL-1026,Business Analytics,16,128,3,16,3,11,17,55,Yes,No,N/A,No review needed
+AL-1027,Computer Science,9,63,7,17,9,21,12,72,Yes,No,N/A,No review needed
+AL-1028,Computer Science,14,126,13,27,9,26,13,108,Yes,No,N/A,No review needed
+AL-1029,Biology,8,40,1,25,7,11,1,65,Yes,No,N/A,No review needed
+AL-1030,Engineering,18,126,2,18,3,19,2,51,Yes,No,N/A,No review needed
+AL-1031,Engineering,14,84,10,9,2,47,2,88,Yes,No,N/A,No review needed
+AL-1032,Computer Science,18,180,9,8,7,23,8,72,Yes,No,N/A,No review needed
+AL-1033,Business Analytics,11,132,6,26,3,8,14,65,Yes,No,N/A,No review needed
+AL-1034,Computer Science,18,162,5,13,3,23,11,69,Yes,No,N/A,No review needed
+AL-1035,English,19,171,17,2,6,50,3,87,Yes,No,N/A,No review needed
+AL-1036,Computer Science,5,65,2,10,6,46,6,85,Yes,No,N/A,No review needed
+AL-1037,Business Analytics,10,130,8,10,2,13,13,59,Yes,Yes,"Yes, same day",Cleared via Authorship Receipt
+AL-1038,Business Analytics,6,54,2,25,9,43,13,97,Yes,Yes,"Yes, same day",Cleared via Authorship Receipt
+AL-1039,Psychology,6,78,1,28,7,45,17,107,Yes,No,N/A,No review needed
+AL-1040,English,11,110,1,30,7,21,7,74,Yes,No,N/A,No review needed
+AL-1041,Business Analytics,15,210,12,6,5,18,5,64,Yes,No,N/A,No review needed
+AL-1042,Psychology,12,132,11,29,5,25,5,83,Yes,No,N/A,No review needed
+AL-1043,Computer Science,17,136,7,28,9,30,9,95,Yes,Yes,"Yes, same day",Cleared via Authorship Receipt
+AL-1044,Engineering,8,88,6,10,3,57,8,100,Yes,No,N/A,No review needed
+AL-1045,Business Analytics,19,190,1,5,6,19,18,62,Yes,No,N/A,No review needed
+AL-1046,Psychology,15,150,12,27,7,35,16,105,Yes,No,N/A,No review needed
+AL-1047,English,8,72,1,24,8,8,16,68,Yes,No,N/A,No review needed
+AL-1048,Engineering,12,168,6,23,3,54,9,109,Yes,No,N/A,No review needed
+AL-1049,Biology,14,126,9,6,5,34,12,76,Yes,No,N/A,No review needed
+AL-1050,Biology,14,182,14,2,6,26,6,72,Yes,No,N/A,No review needed
+AL-1051,Engineering,12,144,8,16,5,40,15,94,Yes,Yes,"Yes, same day",Cleared via Authorship Receipt
+AL-1052,Computer Science,18,252,11,4,5,51,9,92,Yes,No,N/A,No review needed
+AL-1053,Engineering,3,24,2,21,3,37,13,87,Yes,No,N/A,No review needed
+AL-1054,Computer Science,17,187,8,6,2,56,3,93,Yes,No,N/A,No review needed
+AL-1055,Psychology,18,216,2,19,5,15,14,64,Yes,No,N/A,No review needed
